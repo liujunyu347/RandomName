@@ -1,17 +1,57 @@
 package RandomStudentName;
 
 import javax.swing.JOptionPane;
+import javax.xml.soap.Text;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
-import javax.swing.*;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
-public class RandomName {
+public class RandomName extends Application{
+
+    Button button;
+    Label label;
+
     public static void main(String[] args) {
-        RandomName RN = new RandomName();
-        String[] names = RN.readString("names.txt");
-//        String[] names = new String[]{"Shakur Ahmed", "Prithvi Atani", "Diming Chu", "Sumid Dhungel", "Jason H"};
-        RN.printName(names);
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("Get Random Name");
+        String[] names = readString("names.txt");
+        button = new Button();
+        label = new Label();
+        button.setText("Get one");
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String name = getName(names);
+                label.setText(name);
+            }
+        });
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(0, 10, 0, 10));
+        grid.add(label, 2, 1);
+        grid.add(button, 1,1);
+
+        Scene scene = new Scene(grid, 240, 80);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public String[] readString(String path){
@@ -35,12 +75,13 @@ public class RandomName {
         return null;
     }
 
-    public void printName(String[] names){
+    public String getName(String[] names){
         int index = getRandom(names.length);
-        JOptionPane.showMessageDialog(null,
-                names[index],
-                "A Random Student Name",
-                JOptionPane.PLAIN_MESSAGE);
+        return names[index];
+//        JOptionPane.showMessageDialog(null,
+//                names[index],
+//                "A Random Student Name",
+//                JOptionPane.PLAIN_MESSAGE);
     }
 
     private int getRandom(int len){
