@@ -30,7 +30,13 @@ public class RandomName extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Get Random Name");
-        String[] names = readString("names.txt");
+        String[] names = new String[]{"Shakur Ahmed", "Prithvi Atani", "Diming Chu", "Sumid Dhungel", "Jason H"
+                , "Yan Huang", "Honorine icyitegetse", "Scott Jhou", "Shahriar Kabir", "dongshuo li", "Kun Li",
+                "Kelly Liu", "Junyu Liu", "Louisss", "Shahbaz Mansahia", "Ahmed Mujtaba", "Ola Temitope Olanrewaju",
+                "shrina Patel", "Siyu Qiu", "TAO TAO", "Abby Truong", "Muhammed Rabiu Umar", "Peiqi Wang", "Samuel Yang"
+                , "Richard Zhou"};
+//        String[] names = readString("names.txt");
+//        System.out.println(Arrays.toString(names));
         button = new Button();
         label = new Label();
         button.setText("Get one");
